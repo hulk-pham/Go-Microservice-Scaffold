@@ -1,0 +1,21 @@
+version: "3.3"
+services:
+  customers:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    # ports:
+    # - "13231:80"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.customers.rule=PathPrefix(`/customers`)"
+      - "traefik.http.routers.customers.entrypoints=web"
+      - "traefik.http.middlewares.customers-stripprefix.stripprefix.prefixes=/customers"
+      - "traefik.http.routers.customers.middlewares=customers-stripprefix@docker"
+      - "traefik.http.services.customers.loadbalancer.server.port=1323"
+    networks:
+      - insfras_default
+networks:
+  insfras_default:
+    name: insfras_default
+    external: true
