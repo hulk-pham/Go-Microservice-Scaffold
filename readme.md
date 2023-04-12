@@ -6,3 +6,11 @@
 - Treafik
 - Docker
 - Keycloak
+- Vault
+
+## Todo
+- CI/CD
+- Tracing
+- Logging
+- etcd
+- transport

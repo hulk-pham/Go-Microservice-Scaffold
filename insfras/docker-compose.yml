@@ -31,6 +31,16 @@ services:
     command:
       - "start-dev"
 
+  vault:
+    image: "vault"
+    container_name: "vault"
+    ports:
+      - "8200:8200"
+    networks:
+      - insfras_default
+    environment:
+      - VAULT_DEV_ROOT_TOKEN_ID=dev-only-token
+
 networks:
   insfras_default:
     name: insfras_default
